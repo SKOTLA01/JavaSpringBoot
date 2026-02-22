@@ -11,30 +11,44 @@ public class Main {
         //Connecting java and Database
 
         /*
-        * Import Package
-        * Load and register
-        * Create connections
-        * execute statement
-        * process results
-        * close
-        * */
+         * Import Package
+         * Load and register
+         * Create connections
+         * execute statement
+         * process results
+         * close
+         * */
         //optional
-    Class.forName("org.postgresql.Driver");
+        Class.forName("org.postgresql.Driver");
 
-    String url="jdbc:postgresql://localhost:5432/Root";
-    String user="postgres";
-    String passwod="0000";
-
-    Connection connection = DriverManager.getConnection(url,user,passwod);
+        String url = "jdbc:postgresql://localhost:5432/Root";
+        String user = "postgres";
+        String password = "0000";
+        Connection connection = DriverManager.getConnection(url, user, password);
         System.out.println("Connection establish");
 
-        Statement st=connection.createStatement();
-        String query ="select * from student where rollno=103";
-       ResultSet rs= st.executeQuery(query);
-            while (rs.next()){
-                System.out.println(rs.getString(2));
-            }
+        Statement st = connection.createStatement();
+        String query = "select * from student where rollno=103";
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next()) {
+            System.out.println(rs.getString(2));
+        }
 
-            connection.close();
-    }
+        //CRUD
+        //
+        // .executeQuery()
+        //.execute() -- get true /false(insert /update query
+        //
+        //
+
+
+
+        //Prepared Statement
+
+        PreparedStatement preparedStatement=connection.prepareStatement(query);
+       // preparedStatement.setInt(,"Value");
+
+
+        }
 }
+
