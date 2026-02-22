@@ -18,6 +18,7 @@ public class Main {
         * process results
         * close
         * */
+        //optional
     Class.forName("org.postgresql.Driver");
 
     String url="jdbc:postgresql://localhost:5432/Root";
@@ -25,10 +26,15 @@ public class Main {
     String passwod="0000";
 
     Connection connection = DriverManager.getConnection(url,user,passwod);
-        System.out.printf("Connection establish");
+        System.out.println("Connection establish");
 
+        Statement st=connection.createStatement();
+        String query ="select * from student where rollno=103";
+       ResultSet rs= st.executeQuery(query);
+            while (rs.next()){
+                System.out.println(rs.getString(2));
+            }
 
-
-
+            connection.close();
     }
 }
